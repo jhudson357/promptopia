@@ -7,11 +7,14 @@ import { useRouter } from 'next/navigation'
 import Form from '@components/Form'
 
 const CreatePrompt = () => {
+  // use session to connect the currently logged in user to the prompt they are creating
+  // get router
+  const router = useRouter()
+  // get session - rename 'data' as 'session'
+  const { data: session } = useSession()
+  
   const [submitting, setSubmitting] = useState(false)
-  const [post, setPost] = useState({
-    prompt: '',
-    tag: '',
-  })
+  const [post, setPost] = useState({ prompt: '', tag: '' })
 
   const createPrompt = async (e) => {
     e.preventDefault()
